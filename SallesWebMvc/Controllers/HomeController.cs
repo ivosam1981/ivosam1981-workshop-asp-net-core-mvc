@@ -25,6 +25,15 @@ namespace SallesWebMvc.Controllers
 
         public IActionResult Privacy()
         {
+
+            return View();
+        }
+
+
+        public IActionResult About()
+        {
+            ViewData["Message"] = "Projeto desenvolvido em .NET CORE MVC durante o workshop \"Desenvolvimento de sistema com .DONET C#\"";
+            ViewData["Desenvolvedor"] = "Desenvolvido por Ivo Sam";
             return View();
         }
 
