@@ -4,6 +4,7 @@ using SallesWebMvc.Models;
 using System.Collections.Generic;
 using System.Linq;
 using SallesWebMvc.Services.Exceptions;
+using System.Threading.Tasks;
 
 namespace SallesWebMvc.Services
 {
@@ -18,32 +19,33 @@ namespace SallesWebMvc.Services
         }
 
 
-        public List<Seller> FindAll()
+        public async Task<List<Seller>> FindAllAsync()
         {
-            return _context.Seller.ToList();
+            return await _context.Seller.ToListAsync();
         }
 
-        public Seller FindById(int id)
+        public async  Task<Seller> FindByIdAsync(int id)
         {
-           return _context.Seller.Include(obj => obj.Departament).FirstOrDefault(obj => obj.Id == id);
+           return await _context.Seller.Include(obj => obj.Departament).FirstOrDefaultAsync(obj => obj.Id == id);
         }
 
-        public void Insert(Seller obj)
+        public async Task InsertAsync(Seller obj)
         {
             _context.Add(obj);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Remove(int id)
+        public async Task RemoveAsync(int id)
         {
-            var obj = _context.Seller.Find(id);
+            var obj = await _context.Seller.FindAsync(id);
             _context.Seller.Remove(obj);
-            _context.SaveChanges();
+           await _context.SaveChangesAsync();
         } 
 
-        public void Update(Seller obj)
+        public async Task UpdateAsync(Seller obj)
         {
-           if(!_context.Seller.Any(x => x.Id == obj.Id))
+            bool asAny = await _context.Seller.AnyAsync(x => x.Id == obj.Id);
+           if (!asAny)
             {
                 throw new NotFoundExceptions("Id não existe");
             }
@@ -51,7 +53,7 @@ namespace SallesWebMvc.Services
             try
             {
                 _context.Update(obj);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
             catch(DbUpdateConcurrencyException e)
             {

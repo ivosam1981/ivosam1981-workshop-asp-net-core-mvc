@@ -1,7 +1,9 @@
-﻿using SallesWebMvc.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SallesWebMvc.Data;
 using SallesWebMvc.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SallesWebMvc.Services
 {
@@ -14,9 +16,9 @@ namespace SallesWebMvc.Services
             _context = context;
         }
 
-        public List<Departament> FindAll()
+        public async Task<List<Departament>> FindAllAsync()
         {
-            return _context.Departament.OrderBy(x=> x.Name).ToList();
+            return await _context.Departament.OrderBy(x=> x.Name).ToListAsync();
         }
 
 
