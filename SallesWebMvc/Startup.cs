@@ -42,12 +42,12 @@ namespace SallesWebMvc
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SeedingService seedingService)
         {
-            var enUS = new CultureInfo("en-US");
+            var ptBR = new CultureInfo("pt-BR");
             var localizationOptions = new RequestLocalizationOptions
             {
-                DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture(enUS),
-                SupportedCultures = new List<CultureInfo> { enUS },
-                SupportedUICultures = new List<CultureInfo> { enUS }
+                DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture(ptBR),
+                SupportedCultures = new List<CultureInfo> { ptBR },
+                SupportedUICultures = new List<CultureInfo> { ptBR }
             };
 
             app.UseRequestLocalization(localizationOptions);
