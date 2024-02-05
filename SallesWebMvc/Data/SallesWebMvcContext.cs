@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,7 +9,7 @@ namespace SallesWebMvc.Data
 {
     public class SallesWebMvcContext : DbContext
     {
-        public SallesWebMvcContext (DbContextOptions<SallesWebMvcContext> options)
+        public SallesWebMvcContext(DbContextOptions<SallesWebMvcContext> options)
             : base(options)
         {
         }
@@ -19,3 +19,4 @@ namespace SallesWebMvc.Data
         public DbSet<SalesRecord> SalesRecord { get; set; }
     }
 }
+
